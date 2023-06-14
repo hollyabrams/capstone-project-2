@@ -1,4 +1,4 @@
-# Final Capstone Project Proposal: E-commerce Site
+# Final Capstone Project Proposal: Ecommerce Site
 ## Tech Stack
 I will primarily use the React framework for the front-end development of my project, along with Tailwind CSS for styling. For the back-end, I will use Node.js. To handle payment processing, I will integrate the Stripe API.
 
@@ -9,10 +9,10 @@ I aim to create a balanced full-stack application where both front-end UI and ba
 This project will be a web-based application specifically designed for desktop and mobile browsers.
 
 ### Project Goal
-The primary goal of this e-commerce site is to provide a seamless and intuitive online shopping experience for users, complete with product listings, shopping cart functionality, user authentication, and secure online payment processing.
+The primary goal of this ecommerce site is to provide a seamless and intuitive online shopping experience for users, complete with product listings, shopping cart functionality, user authentication, and secure online payment processing.
 
 ### User Demographics
-The target demographic for my app will be internet users who prefer online shopping. This includes a wide range of users, from tech-savvy millennials to busy professionals looking for a convenient shopping experience.
+The target demographic for my app will be internet users who prefer online shopping. 
 
 ### Data Usage
 I plan to use product data, user data, and transaction data. The product data will be manually entered into the system for this project's scope, whereas user data will be collected during user registration and login. Transaction data will be created when purchases are made, using information from both user and product data.
@@ -63,6 +63,6 @@ End
 ```
 
 ### Special Features and Stretch Goals
-Beyond typical CRUD operations, I plan to integrate a recommendation system that suggests products based on user behavior and purchase history. A stretch goal would be to incorporate user reviews and ratings for products.
+Beyond typical CRUD operations, I plan to incorporate user reviews and ratings for products.
 
 I understand that these plans may evolve as I delve deeper into the project, but this provides a starting point for my capstone project.
