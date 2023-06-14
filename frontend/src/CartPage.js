@@ -43,7 +43,7 @@ function CartPage() {
                     </h2>
                     <p className="mt-1 text-xl">
                         Check out our awesome products{" "}
-                        <Link to="/" className="text-red-500 underline">here!</Link>
+                        <Link to="/products" className="text-red-500 underline">here!</Link>
                     </p>
                 </>
             )}
