@@ -1,4 +1,4 @@
-# Mode - E-commerce Site
+# Mode - Ecommerce Site
 ![Mode](frontend/public/mode.gif)
 
 Mode is a web application that allows users to explore, learn about, and purchase various products online.
