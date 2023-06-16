@@ -22,12 +22,18 @@ const ProductList = () => {
     search();
   }, []);
 
-  /** Triggered by search form submit; reloads companies. */
-  async function search(name) {
-    let products = await ModeApi.getProducts(name);
-    setProducts(products);
-    setIsLoading(false);
+  /** Triggered by search form submit; reloads products. */
+  async function search(searchTerm = '') {
+    try {
+      let products = await ModeApi.getProducts(searchTerm);
+      console.log('Products from API:', products); // Debugging line
+      setProducts(products);
+      setIsLoading(false);
+    } catch (err) {
+      console.error('Failed to fetch products:', err); 
+    }
   }
+  
 
   if (isLoading) {
     return (

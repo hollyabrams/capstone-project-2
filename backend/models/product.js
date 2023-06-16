@@ -8,26 +8,39 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 /** Related functions for products. */
 
 class Product {
-  /** Create a product (from data), update db, return new product data.
-   *
-   * data should be { name, price, currency, image }
+  /** 
+   * Data should be { name, price, currency, image }
    *
    * Returns { id, name, price, currency, image }
    **/
 
-  static async findAll(q) {
-    // Implement your logic to fetch all products from the database
-    // based on the provided search filter in the query parameters (if any)
-    // and return an array of products.
+  static async findAll(searchFilters = {}) {
+    let query = `SELECT id,
+                        name,
+                        price,
+                        currency,
+                        image
+                 FROM products`;
+    let whereExpressions = [];
+    let queryValues = [];
   
-    // Fetch all products without any filtering:
-    const result = await db.query(
-      `SELECT id, name, price, currency, image FROM products`
-    );
-    const products = result.rows;
+    const { search } = searchFilters;
   
-    return products;
-  }
+    if (search) {
+      queryValues.push(`%${search}%`, `%${search}%`);
+      whereExpressions.push(`name ILIKE $${queryValues.length - 1}`, `price::text ILIKE $${queryValues.length}`);
+    }
+  
+    if (whereExpressions.length > 0) {
+      query += " WHERE " + whereExpressions.join(" OR ");
+    }
+  
+    // Finalize query and return results
+    query += " ORDER BY id";
+    const productsRes = await db.query(query, queryValues);
+    return productsRes.rows;
+}
+
   
 
   static async create(data) {
@@ -49,8 +62,7 @@ class Product {
     return product;
   }
 
-  /** Given a product id, return data about the product.
-   *
+  /** 
    * Returns { id, name, price, currency, image }
    *   where product is { name, price, currency, image }
    *

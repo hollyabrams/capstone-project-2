@@ -27,9 +27,12 @@
         "jsonschema": "^1.2.6",
         "jsonwebtoken": "^8.5.1",
         "morgan": "^1.10.0",
-        "pg": "^8.3.0"
+        "pg": "^8.3.0",
+        "react-modal": "^3.16.1",
+        "stripe": "^12.9.0"
     },
     "devDependencies": {
+        "jest-mock-axios": "^4.7.2",
         "supertest": "^5.0.0-0"
     }
 }

@@ -1,30 +1,17 @@
 import React, { useState } from 'react';
 import { useShoppingCart } from 'use-shopping-cart';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import CartProduct from './components/CartProduct';
+import CheckoutForm from './forms/CheckoutForm';
+import Modal from 'react-modal';
+
+// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
+Modal.setAppElement('#root')
 
 function CartPage() {
-    const { cartCount, cartDetails, formattedTotalPrice, clearCart, redirectToCheckout } = useShoppingCart();
-    const [isRedirecting, setRedirecting] = useState(false);
-
-    async function onCheckout() {
-        if (cartCount > 0) {
-            try {
-                setRedirecting(true)
-                const response = await axios.post("/api/checkout-sessions", cartDetails);
-                const { id } = response.data;
-                const result = await redirectToCheckout(id);
-                if (result?.error) {
-                    console.log("Error in result: ", result)
-                }
-            } catch (error) {
-                console.log("Error: ", error)
-            } finally {
-                setRedirecting(false)
-            }
-        }
-    }
+    const { cartCount, cartDetails, formattedTotalPrice, totalPrice, clearCart } = useShoppingCart();
+    const [showCheckout, setShowCheckout] = useState(false);
+    const currency = Object.values(cartDetails)[0]?.currency || 'usd';
 
     return (
         <div className="container xl:max-w-screen-xl mx-auto py-12 px-20">
@@ -58,15 +45,34 @@ function CartPage() {
                     <span className="font-semibold">{formattedTotalPrice}</span>
                     </p>
                     <button 
-                        disabled={isRedirecting} 
-                        onClick={onCheckout} 
-                        className="border rounded py-2 px-6 bg-yellow-500 hover:bg-yellow-600 border-yellow-500 hover:border-yellow-600 focus:ring-4 focus:ring-opacity-50 focus:ring-yellow-500 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-yellow-500 mt-4 max-w-max">
-                       {isRedirecting ? "Redirecting..." : "Go to Checkout"}
-                    </button>
+                    onClick={() => setShowCheckout(true)} // set showCheckout to true when clicked
+                    className="border rounded py-2 px-6 bg-yellow-500 hover:bg-yellow-600 border-yellow-500 hover:border-yellow-600 focus:ring-4 focus:ring-opacity-50 focus:ring-yellow-500 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-yellow-500 mt-4 max-w-max">
+                    Checkout
+                </button>
                 </div>
+                <Modal
+                    isOpen={showCheckout}
+                    onRequestClose={() => setShowCheckout(false)}
+                    style={{
+                        overlay: { backgroundColor: 'rgba(0, 0, 0, 0.75)' },
+                        content: {
+                        color: 'lightsteelblue',
+                        width: '50%',
+                        height: '50%', 
+                        marginLeft: 'auto',
+                        marginRight: 'auto',
+                        marginTop: 'auto',
+                        marginBottom: 'auto'
+                        }
+                    }}
+                    contentLabel="Checkout Modal"
+                    >
+                    <CheckoutForm amount={totalPrice} currency={currency}/>
+                </Modal>
             </div>}
         </div>
     )
 }
 
 export default CartPage;
+

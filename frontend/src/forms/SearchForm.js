@@ -21,13 +21,12 @@ function SearchForm({ searchFor }) {
      */
     function handleSubmit(evt) {
         evt.preventDefault();
-
-        // Trim the search term and pass it to the parent component's search function
-        searchFor(searchTerm.trim() || undefined);
-
-        // Set the search term to the trimmed value
-        setSearchTerm(searchTerm.trim());
+        let trimmedSearchTerm = searchTerm.trim();
+        console.log('Trimmed search term:', trimmedSearchTerm);
+        searchFor(trimmedSearchTerm || undefined);
+        setSearchTerm(trimmedSearchTerm);
     }
+    
 
     /**
      * Updates the search term state as the user types in the search field.
@@ -36,7 +35,7 @@ function SearchForm({ searchFor }) {
      */
     function handleChange(evt) {
         setSearchTerm(evt.target.value);
-    }
+    }    
 
     return (
         <div className="mb-4">

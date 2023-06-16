@@ -51,7 +51,7 @@ export default function Home() {
         <h1>Welcome to Mode!</h1>
       </div>
       <div className="text-lg mb-8 text-center text-gray-600">
-        <p>Life is full of different moods and modes. Whether you're in an artistic mode, ready to create and express yourself, or in a relaxation mode, seeking peace and tranquility, we have just what you need. Mode is your ultimate destination for finding the perfect products to complement your state of mind. Explore, shop, and let's embrace every mode together!</p>
+        <p>Life is full of different moods and modes. Whether you're in an artistic mode, ready to create and express yourself, or in a relaxation mode, we have just what you need. Mode is your ultimate destination for finding the perfect products to complement your state of mind. Let's embrace every mode together!</p>
       </div>
 
       <div className="text-4xl mb-8 text-center text-gray-800 p-3">

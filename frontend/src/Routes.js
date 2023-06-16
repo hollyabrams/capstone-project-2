@@ -6,6 +6,7 @@ import SignupForm from './forms/SignupForm';
 import ProfileForm from './forms/ProfileForm';
 import ProductPage from './ProductPage';
 import CartPage from './CartPage';
+import SuccessPage from './Success';
 
 const Routes = ({ login, signup }) => {
   return (
@@ -31,6 +32,9 @@ const Routes = ({ login, signup }) => {
         </Route>
         <Route exact path="/cart">
           <CartPage />
+        </Route>
+        <Route exact path="/success">
+          <SuccessPage />
         </Route>
       </Switch>
     </>

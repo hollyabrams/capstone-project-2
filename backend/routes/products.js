@@ -47,6 +47,7 @@ router.post("/", ensureAdmin, async function (req, res, next) {
 
 router.get("/", async function (req, res, next) {
   const q = req.query;
+  console.log('Received search term:', q);
   try {
     const validator = jsonschema.validate(q, productSearchSchema);
     if (!validator.valid) {

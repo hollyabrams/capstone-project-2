@@ -9,6 +9,8 @@ import Footer from "./components/Footer";
 import Routes from "./Routes"
 import UserContext from './UserContext';
 import { Toaster } from 'react-hot-toast';
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
 
 // Key name for storing token in localStorage for "remember me" re-login
 export const TOKEN_STORAGE_ID = 'mode-token';
@@ -33,6 +35,8 @@ function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+
 
   // Load user info from API. Until a user is logged in and they have a token,
   // this should not run. It only needs to re-run when a user logs out, so
@@ -127,6 +131,7 @@ async function signup(signupData) {
   return (
     <div className="font-sans min-h-screen flex flex-col">
       <BrowserRouter>
+      <Elements stripe={stripePromise}>
         <UserContext.Provider value={{ currentUser, setCurrentUser, logout }}>
           <NavBar />
             <main className="flex-grow bg-[#f7f7f7]">
@@ -135,6 +140,7 @@ async function signup(signupData) {
           <Footer />
         </UserContext.Provider>
         <Toaster />
+      </Elements>
       </BrowserRouter>
     </div>
   );

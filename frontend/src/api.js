@@ -28,10 +28,11 @@ class ModeApi {
   }
 
   // Get products
-  static async getProducts() {
-    let res = await this.request(`products`);
+  static async getProducts(searchTerm = '') {
+    let res = await this.request(`products?search=${encodeURIComponent(searchTerm)}`);
     return res.products;
   }
+
 
   // Get product by id
   static async getProduct(id) {

@@ -21,9 +21,9 @@ export default function ProductPage() {
 
     function onAddToCart(event) {
         event.preventDefault()
-        const id = toast.loading("Adding 1 item...")
-        addItem(product)
-        toast.success(`${product.name} added`, { id })
+        const id = toast.loading(`Adding ${count} item${count > 1 ? "s" : ""}`)
+        addItem(product, { count });
+        toast.success(`${count} ${product.name} added`, { id })
     }
 
     if (!product) {
