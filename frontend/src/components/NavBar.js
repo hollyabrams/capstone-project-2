@@ -26,7 +26,7 @@ function Navigation({ isOpen, loggedIn, logout, currentUser }) {
       ? [
           { to: "/products", name: "Products" },
           { to: "/profile", name: "Profile" },
-          { to: "/logout", name: `Log out ${currentUser.first_name || currentUser.username}`, onClick: logout }
+          { to: "/", name: `Log out ${currentUser.first_name || currentUser.username}`, onClick: logout }
       ]
       : [
           { to: "/products", name: "Products" },

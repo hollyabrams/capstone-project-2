@@ -78,6 +78,20 @@ router.get("/:username", ensureCorrectUserOrAdmin, async function (req, res, nex
   }
 });
 
+/** POST /
+ *
+ * Adds a new transaction. 
+ *
+ **/
+
+router.post("/:username/transactions", async function(req, res, next) {
+  try {
+      const transaction = await User.addTransaction(req.params.username, req.body);
+      return res.status(201).json({ transaction });
+  } catch (err) {
+      return next(err);
+  }
+});
 
 /** GET /[username]/transactions => { transactions }
 * Returns a list of transactions made by the user with the given username.

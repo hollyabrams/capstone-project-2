@@ -1,16 +1,19 @@
+import { useContext } from 'react';
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useForm } from "react-hook-form";
 import { Card, CardBody } from 'reactstrap';
 import { useShoppingCart } from "use-shopping-cart";
 import { useHistory } from 'react-router-dom';
-
+import ModeApi from '../api';
+import UserContext from '../UserContext';
 
 function CheckoutForm({ amount, currency }) {
   const { handleSubmit } = useForm();
   const stripe = useStripe();
   const elements = useElements();
-  const { clearCart } = useShoppingCart();
+  const { clearCart, cartDetails } = useShoppingCart();
   const history = useHistory(); 
+  const { currentUser } = useContext(UserContext);
   
   const onSubmit = async (data) => {
     if (!stripe || !elements) {
@@ -47,6 +50,23 @@ function CheckoutForm({ amount, currency }) {
   
       if (data.success) {
         console.log('Payment succeeded');
+
+        // Here we add the transaction to the database after a successful payment
+        try {
+          // Loop over each item in the cart and add each as a separate transaction
+          for (const [productId, productDetails] of Object.entries(cartDetails)) {
+            const transactionData = {
+              productId: productId,
+              quantity: productDetails.quantity,
+              totalPrice: productDetails.price * productDetails.quantity, // assuming price is for one item
+            };
+
+            await ModeApi.addTransaction(currentUser.username, transactionData);
+          }
+        } catch (error) {
+          console.error("Failed to add transaction: ", error);
+        }
+
         clearCart();
         history.push('/success');
       } else {
@@ -83,6 +103,5 @@ function CheckoutForm({ amount, currency }) {
 }
   
 export default CheckoutForm;
-
 
   

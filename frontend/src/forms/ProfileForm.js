@@ -1,21 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../UserContext';
 import ModeApi from '../api';
 
-/** Edit profile form.
- *
- * Displays profile form and handles changes to local form state.
- * Submitting the form calls the API to save, and triggers user info reloading
- * throughout the site.
- *
- * Confirmation of a successful save.
- *
- * Routed as /profile
- * Routes -> ProfileForm
- */
-
 const ProfileForm = ({ deleteUser }) => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  
   const INITIAL_STATE = {
     username: currentUser.username,
     password: '',
@@ -26,18 +15,22 @@ const ProfileForm = ({ deleteUser }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const [formErrors, setFormErrors] = useState([]);
   const [message, setMessage] = useState('');
+  const [transactions, setTransactions] = useState([]);
 
-  console.debug(
-    'ProfileForm',
-    'currentUser=',
-    currentUser,
-    'formData=',
-    formData,
-    'formErrors=',
-    formErrors
-  );
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const userTransactions = await ModeApi.getTransactions(currentUser.username);
+        setTransactions(userTransactions);
+        console.log(userTransactions);
+      } catch (error) {
+        console.error("Failed to fetch transactions: ", error);
+      }
+    }
 
-  /** Update form fields */
+    fetchTransactions();
+}, [currentUser.username]);
+
   const handleChange = evt => {
     const { name, value } = evt.target;
     setFormData(data => ({
@@ -47,13 +40,6 @@ const ProfileForm = ({ deleteUser }) => {
     setFormErrors([]);
   };
 
-  /** on form submit:
-   * - attempt save to backend & report any errors
-   * - if successful
-   *   - clear previous error messages and password
-   *   - show save-confirmed message
-   *   - set current user info throughout the site
-   */
   const handleSubmit = async evt => {
     evt.preventDefault();
 
@@ -78,12 +64,11 @@ const ProfileForm = ({ deleteUser }) => {
     setFormData(f => ({ ...f, password: '' }));
     setFormErrors([]);
 
-    // trigger reloading of user information throughout the site
     setCurrentUser(updatedUser);
   };
 
   return (
-    <div className="Profile mx-auto mt-5 flex flex-col items-center justify-center w-full md:w-5/12 lg:w-4/12 p-8">
+    <div className="Profile mx-auto mt-5 flex flex-col items-center justify-center w-full md:w-6/12 lg:w-6/12 p-8 min-w-full md:min-w-3/4 lg:min-w-3/4">
       <div className="card bg-white shadow-lg rounded-lg p-6">
         <div className="card-body">
           <h1 className="text-2xl font-bold mb-4">Profile</h1>
@@ -155,6 +140,18 @@ const ProfileForm = ({ deleteUser }) => {
             >
               Save Changes
             </button>
+            <h2 className="text-xl font-bold mb-4">Transactions</h2>
+            {transactions.length > 0 ? (
+              transactions.map((transaction) => (
+                <div key={transaction.transactionId}>
+                  <p>Transaction ID: {transaction.transactionId}</p>
+                  <p>Total Price: {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(transaction.totalPrice / 100)}</p>
+                  <p>Date: {new Date(transaction.createdAt).toLocaleString()}</p>
+                </div>
+              ))
+            ) : (
+              <p>No transactions yet.</p>
+            )}
           </form>
         </div>
       </div>
