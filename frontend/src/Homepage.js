@@ -8,7 +8,12 @@ export default function Home() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/products')
+    const apiUrl =
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3001/products' // Development URL
+        : 'https://mode-ecommerce.onrender.com/products'; // Production URL
+  
+    fetch(apiUrl)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data.products)) {
@@ -26,6 +31,7 @@ export default function Home() {
       })
       .catch(error => console.error('Error fetching products', error));
   }, []);
+  
 
   useEffect(() => {
     const options = {

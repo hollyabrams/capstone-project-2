@@ -26,25 +26,26 @@ function CheckoutForm({ amount, currency }) {
       type: 'card',
       card: cardElement,
     });
-  
+    
     if (error) {
       console.log('[error]', error);
     } else {
       console.log('[PaymentMethod]', paymentMethod);
-      const response = await fetch("http://localhost:3001/payments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      
+      const apiUrl =
+        process.env.NODE_ENV === 'development'
+          ? 'http://localhost:3001/payments' // Development URL
+          : 'https://mode-ecommerce.onrender.com/payments'; // Production URL
+    
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           payment_method: paymentMethod.id,
           amount: amount,
           currency: currency,
         }),
-      }); 
-
-      if (!response.ok) {
-        console.error(`Backend server responded with a ${response.status} status`);
-        return;
-      }
+      });
         
       const data = await response.json();
   
