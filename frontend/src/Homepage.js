@@ -29,7 +29,7 @@ export default function Home() {
 
   useEffect(() => {
     const options = {
-      strings: ['Current Mode: Artistic', 'Current Mode: Relaxation', 'Current Mode: Adventure', 'Current Mode: Hustle'],
+      strings: ['Current Mode: Relaxation', 'Current Mode: Artistic', 'Current Mode: Adventure', 'Current Mode: Hustle'],
       typeSpeed: 50,
       backSpeed: 50,
       loop: true,
@@ -54,21 +54,21 @@ export default function Home() {
         <p>Life is full of different moods and modes. Whether you're in an artistic mode, ready to create and express yourself, or in a relaxation mode, we have just what you need. Mode is your ultimate destination for finding the perfect products to complement your state of mind. Let's embrace every mode together!</p>
       </div>
 
-      <div className="text-4xl mb-8 text-center text-gray-800 p-3">
-        <span id="mode-description">Current Mode: Artistic Mode</span>
+      <div className="text-4xl mb-8 text-center text-white bg-blue-500 p-3 shadow-lg rounded-md">
+        <span id="mode-description">Current Mode: </span>
       </div>
-
-        <div className="grid gap-8 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-          {products.slice(0, 3).map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-        <div className="mt-4">
-          <Link to="/products" className="text-blue-500 hover:underline">View more products</Link>
-        </div>
+      
+      <div className="grid gap-8 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 ">
+        {products.slice(0, 3).map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+      <div className="mt-4">
+        <Link to="/products" className="text-blue-500 hover:underline">View more products</Link>
+      </div>
     </div>
   );
-  
+ 
 }
 
 

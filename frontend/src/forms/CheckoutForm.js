@@ -76,9 +76,9 @@ function CheckoutForm({ amount, currency }) {
   };
   
   return (
-    <div className="container sm:max-w-screen-sm mx-auto py-12 px-20 mt-5">
+    <div className="container mx-auto py-12 px-4 sm:px-20 mt-5">
       <hr />
-      <Card className="shadow-lg rounded-lg w-full">
+      <Card className="shadow-lg rounded-lg sm:w-full">
         <CardBody className="p-4">
           <h1 className="text-2xl font-bold mb-4">Checkout</h1>
           <form className="CheckoutForm-form space-y-4" onSubmit={handleSubmit(onSubmit)}>
@@ -99,7 +99,7 @@ function CheckoutForm({ amount, currency }) {
         </CardBody>
       </Card>
     </div>
-  );
+  ); 
 }
   
 export default CheckoutForm;
