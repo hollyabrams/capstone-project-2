@@ -16,14 +16,17 @@ describe("config can come from env", function () {
     delete process.env.SECRET_KEY;
     delete process.env.PORT;
     delete process.env.BCRYPT_WORK_FACTOR;
+
+    process.env.NODE_ENV = "test";
+    expect(config.getDatabaseUri()).toEqual("mode_test");
+
     delete process.env.DATABASE_URL;
 
-    expect(config.getDatabaseUri()).toEqual("mode");
-    process.env.NODE_ENV = "test";
-
-    expect(config.getDatabaseUri()).toEqual("mode_test");
+    process.env.NODE_ENV = "production";
+    expect(() => config.getDatabaseUri()).toThrowError("DATABASE_URL must be set in production");
   });
 })
+
 
 // PASS  ./config.test.js
 // config can come from env

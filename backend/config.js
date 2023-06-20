@@ -13,10 +13,18 @@ const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 
 // Use dev database, testing database, or via env var, production database
 function getDatabaseUri() {
-  return (process.env.NODE_ENV === "test")
-      ? "mode_test"
-      : process.env.DATABASE_URL;
+  if (process.env.NODE_ENV === "test") {
+    return "mode_test";
+  }
+
+  if (process.env.NODE_ENV === "production" && !process.env.DATABASE_URL) {
+    throw new Error("DATABASE_URL must be set in production");
+  }
+
+  return process.env.DATABASE_URL || "mode";
 }
+
+
 
 // Speed up bcrypt during tests, since the algorithm safety isn't being tested
 //
