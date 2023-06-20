@@ -15,7 +15,7 @@ const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 function getDatabaseUri() {
   return (process.env.NODE_ENV === "test")
       ? "mode_test"
-      : process.env.DATABASE_URL || "mode";
+      : process.env.DATABASE_URL;
 }
 
 // Speed up bcrypt during tests, since the algorithm safety isn't being tested
