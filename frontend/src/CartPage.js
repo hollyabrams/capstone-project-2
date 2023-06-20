@@ -5,7 +5,7 @@ import CartProduct from './components/CartProduct';
 import CheckoutForm from './forms/CheckoutForm';
 import Modal from 'react-modal';
 
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
+// Bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root')
 
 function CartPage() {

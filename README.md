@@ -28,20 +28,15 @@ These features were implemented to create an engaging and personalized experienc
 
 Mode utilizes the Stripe API for payment processing. The API provides a secure method for processing online payments.
 
-## Technology Stack
+## Running Tests
 
-- Front-end: React.js, Tailwind CSS
-- Back-end: Node.js
-- Payment Processing: Stripe API
-- Database: PostgreSQL
+This project uses Jest and React Testing Library for frontend testing and Jest for backend testing.
 
-## Deployment
+To run the tests, navigate to either the `frontend` or `backend` directory and run the following command:
 
-The application is deployed using [Render](https://render.com/), and the PostgreSQL database is hosted on [ElephantSQL](https://www.elephantsql.com/).
-
-## Additional Notes
-
-Mode is designed to provide a seamless and secure online shopping experience. If you have any suggestions or feedback, please feel free to contribute to the project.
+```bash
+$ npm test
+```
 
 ## How to Run
 
@@ -62,3 +57,19 @@ $ npm install
 
 # Start the backend server
 $ npm start
+```
+
+## Technology Stack
+
+- Front-end: React.js, Tailwind CSS
+- Back-end: Node.js
+- Payment Processing: Stripe API
+- Database: PostgreSQL
+
+## Deployment
+
+The application is deployed using [Render](https://render.com/), and the PostgreSQL database is hosted on [ElephantSQL](https://www.elephantsql.com/).
+
+## Additional Notes
+
+Mode is designed to provide a seamless and secure online shopping experience. If you have any suggestions or feedback, please feel free to contribute to the project.q

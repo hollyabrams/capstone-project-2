@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container xl:max-w-screen-xl mx-auto py-12 px-20"
+  >
+    <div
+      class="text-5xl mb-8 text-center"
+    >
+      <h1>
+        Welcome to Mode!
+      </h1>
+    </div>
+    <div
+      class="text-lg mb-8 text-center text-gray-600"
+    >
+      <p>
+        Life is full of different moods and modes. Whether you're in an artistic mode, ready to create and express yourself, or in a relaxation mode, we have just what you need. Mode is your ultimate destination for finding the perfect products to complement your state of mind. Let's embrace every mode together!
+      </p>
+    </div>
+    <div
+      class="text-4xl mb-8 text-center text-white bg-blue-500 p-3 shadow-lg rounded-md"
+    >
+      <span
+        id="mode-description"
+      >
+        Current Mode: 
+      </span>
+      <span
+        aria-hidden="true"
+        class="typed-cursor"
+      >
+        |
+      </span>
+    </div>
+    <div
+      class="grid gap-8 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 "
+    />
+    <div
+      class="mt-4"
+    >
+      <a
+        class="text-blue-500 hover:underline"
+        href="/products"
+      >
+        View more products
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -17,9 +17,6 @@ export const TOKEN_STORAGE_ID = 'mode-token';
 
 /** eCommerce application.
  *
- * - infoLoaded: has user data been pulled from API?
- *   (this manages spinner for "loading...")
- *
  * - currentUser: user obj from API. This becomes the way to tell
  *   if someone is logged in. This is passed around via context throughout app.
  *
