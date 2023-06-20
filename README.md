@@ -11,7 +11,7 @@ Mode is a platform for online shopping enthusiasts. Users can browse through a r
 
 - **Browse Products**: Users can explore a collection of products.
 - **Shopping Cart Functionality**: Users can add products to their shopping cart and view the details of their cart before checking out.
-- **User Authentication**: Users can register and log in to make purchases and view their order history.
+- **User Authentication**: Users can register and log in to view their order history.
 - **Secure Online Payment**: Users can process their payments securely with Stripe integration.
   
 These features were implemented to create an engaging and personalized experience for users, allowing them to have a seamless online shopping experience.
@@ -20,8 +20,8 @@ These features were implemented to create an engaging and personalized experienc
 
 - Users can view featured products listed on the homepage.
 - Users can add specific products to their shopping cart.
-- To make purchases, users can register and log in.
-- Once logged in, users can proceed to checkout, process their payments, and view their order history.
+- Guests as well has authenticated users can make purchases.
+- Users can proceed to checkout, process their payments, and view their order history.
 - Users can manage their profile and view past transactions.
 
 ## API
