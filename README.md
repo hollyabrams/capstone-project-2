@@ -72,4 +72,4 @@ The application is deployed using [Render](https://render.com/), and the Postgre
 
 ## Additional Notes
 
-Mode is designed to provide a seamless and secure online shopping experience. If you have any suggestions or feedback, please feel free to contribute to the project.q
+Mode is designed to provide a seamless and secure online shopping experience. If you have any suggestions or feedback, please feel free to contribute to the project.
