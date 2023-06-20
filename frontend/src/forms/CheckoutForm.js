@@ -31,7 +31,7 @@ function CheckoutForm({ amount, currency }) {
       console.log('[error]', error);
     } else {
       console.log('[PaymentMethod]', paymentMethod);
-      const response = await fetch("http://localhost:3001/payments", {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/payments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

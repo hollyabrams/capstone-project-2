@@ -8,7 +8,7 @@ export default function Home() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/products')
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/products`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data.products)) {
