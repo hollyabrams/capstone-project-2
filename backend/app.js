@@ -28,6 +28,10 @@ app.use("/products", productsRoutes);
 app.use("/payments", paymentsRoutes);
 
 
+app.get("/", (req, res) => {
+  res.send("Hello, Render!");
+});
+
 /** Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {
   return next(new NotFoundError());
